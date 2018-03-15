@@ -184,10 +184,12 @@ int  CAN_COMMON::setRXFilter (uint8_t mailbox,  uint32_t id,  uint32_t mask,  bo
 }
 
 //+=====================================================================================================================
+// Catch every packet
+//
 int  CAN_COMMON::watchFor ()
 {
-	if (id <= 0x7FF)  return setRXFilter(0, 0, false) ;
-	else              return setRXFilter(0, 0, true ) ;
+	setRXFilter(0, 0, false);        // Catch standard packets
+	return setRXFilter(0, 0, true);  // Catch extended packets
 }
 
 //+=============================================================================
