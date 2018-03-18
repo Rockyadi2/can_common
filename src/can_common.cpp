@@ -19,7 +19,7 @@ void  CANListener::initialize ()
 // !!! This needs to return a bool
 void  CANListener::attachMBHandler (uint8_t mailbox)
 {
-	if (mailBox >= numFilters)  return ;//false;
+	if (mailbox >= numFilters)  return ;//false;
 
 	callbacksActive |= (1 << mailbox) ;
 	return ;//true;
@@ -29,7 +29,7 @@ void  CANListener::attachMBHandler (uint8_t mailbox)
 // !!! This needs to return a bool
 void  CANListener::detachMBHandler (uint8_t mailbox)
 {
-	if (mailBox >= numFilters)  return ;//false;
+	if (mailbox >= numFilters)  return ;//false;
 
 	callbacksActive &= ~(1 << mailbox) ;
 	return ;//true;
@@ -157,17 +157,17 @@ void  CAN_COMMON::setCallback (uint8_t mailbox,  void (*cb)(CAN_FRAME*))
 
 //+=============================================================================
 // !!! wrapper for setCallback !?
-void  CAN_COMMON::attachCANInterrupt (uint8_t mailBox,  void (*cb)(CAN_FRAME*))
+void  CAN_COMMON::attachCANInterrupt (uint8_t mailbox,  void (*cb)(CAN_FRAME*))
 {
-	setCallback(mailBox, cb);
+	setCallback(mailbox, cb);
 }
 
 //+=====================================================================================================================
 // !!! needs to return bool
-void  CAN_COMMON::detachCANInterrupt (uint8_t mailBox)
+void  CAN_COMMON::detachCANInterrupt (uint8_t mailbox)
 {
 	if (mailbox >= numFilters)  return ;//false;
-	cbCANFrame[mailBox] = 0;
+	cbCANFrame[mailbox] = 0;
 	return ;//true;
 }
 
@@ -248,11 +248,11 @@ int  CAN_COMMON::watchForRange (uint32_t idLo,  uint32_t idHi)
 		idHi = tmp;
 	}
 
-	id   = id1;
-	mask = (id2 <= 0x7FF) ? 0x7FF : 0x1FFFFFFF ;
-	for (uint32_t  c = id1;  c <= id2;  c++) {
+	id   = idLo;
+	mask = (idHi <= 0x7FF) ? 0x7FF : 0x1FFFFFFF ;
+	for (uint32_t  c = idLo;  c <= idHi;  c++) {
 		id   &= c;
-		mask &= (~(id1 ^ c)) & 0x1FFFFFFF;
+		mask &= (~(idLo ^ c)) & 0x1FFFFFFF;
 	}
 
 	// output of the above crazy loop is actually the end result.

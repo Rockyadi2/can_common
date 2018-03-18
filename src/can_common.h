@@ -19,16 +19,16 @@
 #	undef CAN_BPS_5K
 #endif
 
-#define CAN_BPS_1000K	1000000
-#define CAN_BPS_800K	800000
-#define CAN_BPS_500K	500000
-#define CAN_BPS_250K	250000
-#define CAN_BPS_125K	125000
-#define CAN_BPS_50K		50000
-#define CAN_BPS_33333	33333
-#define CAN_BPS_25K		25000
-#define CAN_BPS_10K		10000
-#define CAN_BPS_5K		5000
+#define CAN_BPS_1000K	(1000000ul)
+#define CAN_BPS_800K	(800000ul)
+#define CAN_BPS_500K	(500000ul)
+#define CAN_BPS_250K	(250000ul)
+#define CAN_BPS_125K	(125000ul)
+#define CAN_BPS_50K		(50000ul)
+#define CAN_BPS_33333	(33333ul)
+#define CAN_BPS_25K		(25000ul)
+#define CAN_BPS_10K		(10000ul)
+#define CAN_BPS_5K		(5000ul)
 
 #define CAN_DEFAULT_BAUD  CAN_BPS_250K  // !!! CAN_BPS_DFLT
 
@@ -126,6 +126,7 @@ private:
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // Abstract function that mostly just sets an interface that all descendants must implement
+//
 class CAN_COMMON
 {
 public:
