@@ -38,7 +38,7 @@
 // This structure presupposes little endian mode.
 // If you use it on a big endian processor you're going to have a bad time.
 //
-// !!! this simple doesn't work 0x0102030405060708 -> {8,7,6,5,4,3,2,1}
+// !!! this simply doesn't work 0x0102030405060708 -> {8,7,6,5,4,3,2,1}
 // !!! This whole idea needs to be revisited - probably with MACROs
 typedef
 	union {
@@ -80,7 +80,7 @@ typedef
     uint8_t   dlc;      // Length {0..8}
     uint8_t   pri;      // Priority {0..15} - Only used when transmitting frames
     bool      ext;      // Extended
-    bool      rtr;      // Remote Tranmit Request
+    bool      rtr;      // Remote Transmit Request
     uint8_t   bus;      // CAN Bus number   - Used by data logging systems
     canDir_t  dir;      // CDIR_RX, CDIR_TX - Used by data logging systems
   }
